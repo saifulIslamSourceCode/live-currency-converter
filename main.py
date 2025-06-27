@@ -40,7 +40,7 @@ class AutocompleteCombobox(ttk.Combobox):
 def load_country_names():
     """Fetch list of all country names from REST Countries API."""
     try:
-        response = requests.get("https://restcountries.com/v3.1/all")
+        response = requests.get("https://restcountries.com/v3.1/all?fields=name")
         response.raise_for_status()
         country_data = response.json()
         country_names = sorted([country["name"]["common"] for country in country_data])
@@ -121,6 +121,7 @@ def update_history_display():
 
 # Load country list at program start
 all_countries = load_country_names()
+print(all_countries)
 
 # Setup main window
 app = tk.Tk()
